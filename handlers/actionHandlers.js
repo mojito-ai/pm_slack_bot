@@ -1,6 +1,8 @@
 import { app } from "../app.js";
 
-/* ---------- FEEDBACK CLICK ---------- */
+/* ----------------------------------------------------
+   FEEDBACK BUTTON CLICKED
+---------------------------------------------------- */
 app.action("feedback_choice", async ({ ack, body, client }) => {
   await ack();
 
@@ -11,21 +13,14 @@ app.action("feedback_choice", async ({ ack, body, client }) => {
     blocks: [
       {
         type: "section",
-        text: { type: "mrkdwn", text: "Thanks for letting us know!" }
+        text: { type: "mrkdwn", text: "Thanks for letting us know! 🙌" }
       },
       {
-        type: "actions",
+        type: "context",
         elements: [
           {
-            type: "button",
-            text: { type: "plain_text", text: "Feedback" },
-            style: "primary",
-            disabled: true
-          },
-          {
-            type: "button",
-            text: { type: "plain_text", text: "Bug" },
-            disabled: true
+            type: "mrkdwn",
+            text: "_Feedback selected — actions completed._"
           }
         ]
       }
@@ -33,35 +28,30 @@ app.action("feedback_choice", async ({ ack, body, client }) => {
   });
 });
 
-/* ---------- BUG CLICK ---------- */
+/* ----------------------------------------------------
+   BUG BUTTON CLICKED
+---------------------------------------------------- */
 app.action("bug_choice", async ({ ack, body, client }) => {
   await ack();
 
   await client.chat.update({
     channel: body.channel.id,
     ts: body.message.ts,
-    text: "Thanks for letting us know! Would you like me to create a support ticket?",
+    text: "Thanks for letting us know! Would you like a support ticket?",
     blocks: [
       {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "Thanks for letting us know! Would you like me to create a support ticket to help resolve this bug?"
+          text: "Thanks for letting us know! 🐞\nWould you like me to create a support ticket to help resolve this bug?"
         }
       },
       {
-        type: "actions",
+        type: "context",
         elements: [
           {
-            type: "button",
-            text: { type: "plain_text", text: "Feedback" },
-            disabled: true
-          },
-          {
-            type: "button",
-            text: { type: "plain_text", text: "Bug" },
-            style: "primary",
-            disabled: true
+            type: "mrkdwn",
+            text: "_Bug selected — actions completed._"
           }
         ]
       }
