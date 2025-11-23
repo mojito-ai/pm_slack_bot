@@ -73,6 +73,8 @@ app.action("bug_choice", async ({ ack, body, client }) => {
 app.action("bug_yes", async ({ ack, body, client }) => {
   await ack();
 
+  const ticketLink = "https://example.com/ticket/ABC123"; // define the link here
+
   // 1️⃣ Reply in original thread confirming ticket creation
   await client.chat.update({
     channel: body.channel.id,
@@ -83,7 +85,7 @@ app.action("bug_yes", async ({ ack, body, client }) => {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `👍 I've created ticket <https://example.com/ticket/ABC123|#ABC123> to track this issue.`
+          text: `👍 I've created ticket <${ticketLink}|#ABC123> to track this issue.`
         }
       },
     ]
