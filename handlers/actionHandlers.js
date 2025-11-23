@@ -83,7 +83,7 @@ app.action("bug_yes", async ({ ack, body, client }) => {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `👍 I've created ticket <${ticketLink}|#12345> to track this issue.`
+          text: `👍 I've created ticket <https://example.com/ticket/ABC123|#ABC123> to track this issue.`
         }
       },
     ]
